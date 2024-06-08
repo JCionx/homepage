@@ -1,7 +1,13 @@
 // Load the config.json file (using JavaScript vanilla)
 
-config = {}
-fetch('config.json')
+config_file = 'config.json';
+
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.has('json')) {
+    config_file = urlParams.get('json');
+}
+
+fetch(config_file)
     .then(response => response.json())
     .then(data => {
         // Load the config.json file
