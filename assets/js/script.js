@@ -24,16 +24,45 @@ fetch('config.json')
             displayQuote();
             quote.style.display = "flex";
         }
-
+        
         search_engine = data["search_engine"];
         alt_engines = data["alt_engines"];
         console.log(alt_engines)
         document.documentElement.style.setProperty('--primary-color', data["primary_color"]);
         document.documentElement.style.setProperty('--secondary-color', data["secondary_color"]);
         document.documentElement.style.setProperty('--border-radius', data["border_radius"]);
-        document.getElementById('search-icon').setAttribute('fill', data["primary_color"]);       
+        document.getElementById('search-icon').setAttribute('fill', data["primary_color"]);
+        document.body.style.backgroundImage = "url('" + data["wallpaper"] + "')";
+
+        if (data["animations"] == true) {
+            clock.classList.add('fade-in');
+            date.classList.add('fade-in');
+            quote.classList.add('fade-in');
+            document.getElementById('search-bar').style.transition = "0.1s";
+            document.getElementById('search-icon').style.transition = "0.1s";
+        }
+
+        if (data["enable_rickroll_at_2am"] == true) {
+            rickroll_at_2am = true;
+        }
+        if (data["hourly_buawawa"] == true) {
+            hourly_buawawa = true;
+        }
+        if (data["ctrl_o_woooaaauuuuu"] == true) {
+            document.addEventListener('keydown', function(e) {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'o') {
+                    let audio = new Audio('assets/audio/woooaaauuuuu.mp3');
+                    audio.play();
+                    e.preventDefault(); // Prevent the default action
+                }
+            });
+        }
     }
 );
+
+rickroll_at_2am = false;
+hourly_buawawa = false;
+last_hour_buawawa = 0;
 
 search_engine = "";
 alt_engines = {}
@@ -66,6 +95,23 @@ function displayTime(config) {
         minutes = minutes < 10 ? '0'+minutes : minutes;
         let time = hours + ":" + minutes + " " + ampm;
         clock_text.innerHTML = time;
+    }
+    if (rickroll_at_2am) {
+        let date = new Date();
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        if (hours == 2 && minutes == 0) {
+            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        }
+    }
+    if (hourly_buawawa) {
+        let date = new Date();
+        let minutes = date.getMinutes();
+        if (minutes == 0 && last_hour_buawawa != date.getHours()) {
+            last_hour_buawawa = date.getHours();
+            let audio = new Audio('assets/audio/buawawa.mp3');
+            audio.play();
+        }
     }
 }
 
