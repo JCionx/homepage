@@ -1,0 +1,19 @@
+{
+    "show_clock": true,
+    "24_hour": true,
+    "show_date": true,
+    "primary_color": "#3c3836",
+    "secondary_color": "#bdae93",
+    "border_radius": "5px",
+    "wallpaper": "https://source.unsplash.com/random",
+    "random_quote": true,
+    "search_engine": "https://www.google.com/search?q=",
+    "alt_engines": {
+        "yt ": "https://www.youtube.com/results?search_query=",
+        "gh ": "https://github.com/search?q=",
+        "wiki ": "https://en.wikipedia.org/wiki/Special:Search?search=",
+        "fa ": "https://www.furaffinity.net/search/?q=",
+        "r/": "https://www.reddit.com/r/",
+        "u/": "https://www.reddit.com/u/"
+    }
+}
